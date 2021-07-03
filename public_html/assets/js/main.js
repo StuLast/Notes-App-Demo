@@ -43,28 +43,21 @@ const renderNotes = (notes, filters) => {
     });
 };
 
-//On Startup
-
-renderNotes(notes, filters);
-
 //Event Listeners
-
-document.querySelector("#btn-add-note").addEventListener('click', (e) => {
-    e.preventDefault();
-    e.target.textContent = 'This button has been clicked';
-    console.log('Add Note button clicked');
-});
-
-document.querySelector('#btn-remove-all-notes').addEventListener('click', (e) => {
-    e.preventDefault();
-    console.log('Removing all notes');
-    document.querySelectorAll('#notes.note').forEach((note) => {
-        note.remove();
-    });
-});
 
 document.querySelector('#inp-search').addEventListener('input', (e) => {
     e.preventDefault();
     filters.searchText = e.target.value
     renderNotes(notes, filters);
 })
+
+document.querySelector('#form-add-name').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const dataSource = e.target.elements.firstName
+    console.log(dataSource.value);
+    dataSource.value = "";
+})
+
+//On Startup
+
+renderNotes(notes, filters);
