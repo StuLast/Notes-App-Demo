@@ -1,5 +1,7 @@
 # Notes App Demo
 
+This Notes app demo is a basic demonstration using on JS and HTML.
+
 ##  Prerequisites
 
 You will need the following software insalled on your computer:
