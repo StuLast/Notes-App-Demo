@@ -4,7 +4,7 @@
   "description": "",
   "main": "./public_html/index.html",
   "scripts": {
-    "start": "live-server ./public_html",
+    "dev": "live-server ./public_html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
