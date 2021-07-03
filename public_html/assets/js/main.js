@@ -56,7 +56,7 @@ document.querySelector('#form-add-name').addEventListener('submit', (e) => {
     const dataSource = e.target.elements.firstName
     console.log(dataSource.value);
     dataSource.value = "";
-})
+});
 
 //On Startup
 
