@@ -18,6 +18,7 @@ const notes = [
 
 const filters = {
     searchText: '',
+    sortBy: 'byCreated',
 }
 
 //Dynamic data rendering
@@ -49,14 +50,13 @@ document.querySelector('#inp-search').addEventListener('input', (e) => {
     e.preventDefault();
     filters.searchText = e.target.value
     renderNotes(notes, filters);
-})
-
-document.querySelector('#form-add-name').addEventListener('submit', (e) => {
-    e.preventDefault();
-    const dataSource = e.target.elements.firstName
-    console.log(dataSource.value);
-    dataSource.value = "";
 });
+
+document.querySelector('#sortOptions').addEventListener('change', (e) => {
+    filters.sortBy = e.target.value;
+    renderNotes(notes, filters);
+    console.log(e.target.value);
+})
 
 //On Startup
 

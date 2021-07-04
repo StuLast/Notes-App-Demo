@@ -10,11 +10,12 @@
         <h1>This is my basic Notes App</h1>
         <h2>Take notes and never forget</h2>
         <input id="inp-search" name="inp-search" type="text" placeholder="Search Notes">
+        <select name="sort-options" id="sortOptions">
+            <option value="byEdited">Sort by last edited</option>
+            <option value="byCreated">Sort by recently created</option>
+            <option value="byAlphabet">Sort alphabetically</option>
+        </select>
         <div id="notes"></div>
-        <form id="form-add-name">
-            <input type="text" name="firstName" placeholder="Enter note text">
-            <button>Submit</button>
-        </form>
-        <script src="./assets/js/main.js"></script>
+        <script src="./assets/js/main.js"d></script>
     </body>
 </html>
