@@ -18,14 +18,25 @@ const setSaveNotes = function (notes) {
 //Rendering
 //=========
 
-const renderNote = (note) => {
-    const newNoteDiv = document.createElement('div');
-    newNoteDiv.className = "note";
-    let html = "";
-    html += `<h3>${note.title > 0 ? note.title: "Unnamed Note"}</h3>`;
-    html += `<p>${note.body}</p>`;
-    newNoteDiv.innerHTML = html;
-    return newNoteDiv
+const generateNoteDOM = (note) => {
+    const noteDiv = document.createElement('div');
+    const noteHeadingDiv = document.createElement('div');
+    const noteHeading = document.createElement('span');
+    const noteContent = document.createElement('p');
+    const button = document.createElement('button');
+
+    noteDiv.className = "note";
+
+    noteHeading.textContent = note.title > 0 ? note.title: "Unnamed Note"
+    noteContent.textContent = note.body;
+    button.textContent = 'x'
+    
+    noteHeadingDiv.appendChild(noteHeading);
+    noteHeadingDiv.appendChild(button);
+
+    noteDiv.appendChild(noteHeadingDiv);
+    noteDiv.appendChild(noteContent);
+    return noteDiv;
 };
 
 const renderNotes = (notes, filters) => {
@@ -34,6 +45,6 @@ const renderNotes = (notes, filters) => {
     });
     document.querySelector('#notes').innerHTML = "";
     filteredNotes.forEach((note) => {
-        document.querySelector('#notes').appendChild(renderNote(note));
+        document.querySelector('#notes').appendChild(generateNoteDOM(note));
     });
 };
