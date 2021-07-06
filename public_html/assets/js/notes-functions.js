@@ -1,3 +1,10 @@
+//State
+const filters = {
+    searchText: '',
+    sortBy: 'byCreated',
+}
+
+
 //CRUD Operations
 //===============
 
@@ -15,6 +22,17 @@ const setSaveNotes = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
+//Remove a note
+const removeNote = function (noteID) {
+    const noteIndex = notes.findIndex((note) => {
+        return note.id === noteID;
+    });
+
+    if(noteIndex > -1) {
+        notes.splice(noteIndex, 1);
+    }
+}
+
 //Rendering
 //=========
 
@@ -30,6 +48,11 @@ const generateNoteDOM = (note) => {
     noteHeading.textContent = note.title > 0 ? note.title: "Unnamed Note"
     noteContent.textContent = note.body;
     button.textContent = 'x'
+    button.addEventListener('click', (e) => {
+        removeNote(note.id);
+        setSaveNotes(notes);
+        renderNotes(notes, filters);
+    })
     
     noteHeadingDiv.appendChild(noteHeading);
     noteHeadingDiv.appendChild(button);

@@ -3,11 +3,6 @@
 
 const notes = getSavedNotes();
 
-const filters = {
-    searchText: '',
-    sortBy: 'byCreated',
-}
-
 //On Startup
 
 renderNotes(notes, filters);
@@ -18,6 +13,7 @@ renderNotes(notes, filters);
 document.querySelector('#create-note').addEventListener('click', (e) => {
     e.preventDefault();
     notes.push({
+        id: uuidv4(),
         title: '',
         body: ''
     });
