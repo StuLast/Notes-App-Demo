@@ -12,13 +12,14 @@ renderNotes(notes, filters);
 
 document.querySelector('#create-note').addEventListener('click', (e) => {
     e.preventDefault();
+    id = uuidv4();
     notes.push({
-        id: uuidv4(),
+        id,
         title: '',
         body: ''
     });
-    setSaveNotes(notes);
-    renderNotes(notes, filters);
+    setSavedNotes(notes);
+    location.assign(`/note.html#${id}`);  
 });
 
 document.querySelector('#inp-search').addEventListener('input', (e) => {
@@ -29,5 +30,8 @@ document.querySelector('#inp-search').addEventListener('input', (e) => {
 document.querySelector('#sortOptions').addEventListener('change', (e) => {
     filters.sortBy = e.target.value;
     renderNotes(notes, filters);
-})
+});
+
+const now = new Date();
+console.log(now.toString());
 

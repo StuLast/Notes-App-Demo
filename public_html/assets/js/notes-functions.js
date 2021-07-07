@@ -4,7 +4,6 @@ const filters = {
     sortBy: 'byCreated',
 }
 
-
 //CRUD Operations
 //===============
 
@@ -18,7 +17,7 @@ const getSavedNotes = function () {
     }
 }
 
-const setSaveNotes = function (notes) {
+const setSavedNotes = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes));
 }
 
@@ -27,11 +26,11 @@ const removeNote = function (noteID) {
     const noteIndex = notes.findIndex((note) => {
         return note.id === noteID;
     });
-
+    console.log(noteIndex);
     if(noteIndex > -1) {
         notes.splice(noteIndex, 1);
     }
-}
+};
 
 //Rendering
 //=========
@@ -39,26 +38,26 @@ const removeNote = function (noteID) {
 const generateNoteDOM = (note) => {
     const noteDiv = document.createElement('div');
     const noteHeadingDiv = document.createElement('div');
-    const noteHeading = document.createElement('span');
+    const noteHeading = document.createElement('a');
     const noteContent = document.createElement('p');
     const button = document.createElement('button');
 
     noteDiv.className = "note";
 
-    noteHeading.textContent = note.title > 0 ? note.title: "Unnamed Note"
-    noteContent.textContent = note.body;
-    button.textContent = 'x'
     button.addEventListener('click', (e) => {
         removeNote(note.id);
-        setSaveNotes(notes);
+        setSavedNotes(notes);
         renderNotes(notes, filters);
     })
+
+    noteHeading.textContent = note.title;
+    noteHeading.setAttribute('href', `/note.html#${note.id}`);
+    button.textContent = 'x'
     
     noteHeadingDiv.appendChild(noteHeading);
     noteHeadingDiv.appendChild(button);
 
     noteDiv.appendChild(noteHeadingDiv);
-    noteDiv.appendChild(noteContent);
     return noteDiv;
 };
 
