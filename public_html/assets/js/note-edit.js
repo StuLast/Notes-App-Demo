@@ -39,9 +39,7 @@ window.addEventListener('storage', (e) => {
     if(e.key === 'notes') {
         notes = JSON.parse(e.newValue);
 
-        note = notes.find(function (note) {
-            return note.id === noteId;
-        });
+        note = notes.find((note) => note.id === noteId);
         
         if(note === undefined) {
             location.assign('/index.html');
