@@ -1,3 +1,5 @@
+'use srict'
+
 //State
 const filters = {
     searchText: '',

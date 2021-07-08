@@ -1,3 +1,5 @@
+'use strict'
+
 //Setup temp data objects
 //=======================
 

@@ -1,3 +1,5 @@
+'use strict'
+
 const noteTitleElement = document.querySelector('#note-title');
 const noteBodyElement = document.querySelector('#note-body');
 const noteRemoveButton = document.querySelector('#remove-note');
