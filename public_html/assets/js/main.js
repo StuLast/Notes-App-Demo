@@ -13,7 +13,10 @@ renderNotes(notes, filters);
 document.querySelector('#create-note').addEventListener('click', (e) => {
     e.preventDefault();
     id = uuidv4();
+    const timeStamp = moment().valueOf();
     notes.push({
+        createdAt: timeStamp,
+        updatedAt: timeStamp,
         id,
         title: '',
         body: ''
@@ -27,11 +30,13 @@ document.querySelector('#inp-search').addEventListener('input', (e) => {
     renderNotes(notes, filters);
 });
 
-document.querySelector('#sortOptions').addEventListener('change', (e) => {
+document.querySelector('#sort-by').addEventListener('change', (e) => {
     filters.sortBy = e.target.value;
     renderNotes(notes, filters);
 });
 
-const now = new Date();
-console.log(now.toString());
+
+
+
+
 

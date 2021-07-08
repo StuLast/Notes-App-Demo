@@ -1,8 +1,8 @@
 //State
 const filters = {
     searchText: '',
-    sortBy: 'byCreated',
-}
+    sortBy: 'byEdited'
+};
 
 //CRUD Operations
 //===============
@@ -15,11 +15,17 @@ const getSavedNotes = function () {
     } else {
         return [];
     }
-}
+};
 
+// returns last updated date formatted for display
+const getLastUpdated = function (timestamp) {
+    return `Last edited: ${moment(timestamp).fromNow()}`;
+};
+
+// save all notes
 const setSavedNotes = function (notes) {
     localStorage.setItem('notes', JSON.stringify(notes));
-}
+};
 
 //Remove a note
 const removeNote = function (noteID) {
@@ -32,7 +38,60 @@ const removeNote = function (noteID) {
     }
 };
 
-//Rendering
+//SORT OPERATIONS
+//===============
+
+//  Sort notes by selected option 
+const sortNotes = function (notes, sortType) {
+    switch(sortType) {
+        case "byEdited":
+            return sortByEdited(notes);
+        case "byCreated":
+            return sortByCreated(notes);
+        case "byAlphabet":
+            return sortByAlphabet(notes);
+        default:
+            return sortByEdited(notes);
+    };
+};
+
+const sortByEdited =  (notes) => {
+    return notes.sort((a, b) => {
+        if(a.updatedAt > b.updatedAt) {
+            return -1;
+        } else if (a.updatedAt < b.updatedAt) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+}
+
+const sortByCreated = (notes) => {
+    return notes.sort((a, b) => {
+        if(a.createdAt > b.createdAt) {
+            return 1;
+        } else if (a.createdAt < b.createdAt) {
+            return -1;
+        } else {
+            return 0;
+        }
+    });
+};
+
+const sortByAlphabet = (notes) => {
+    return notes.sort((a, b) => {
+        if(a.title.toLowerCase() < b.title.toLowerCase()) {
+            return -1;
+        } else if (a.title.toLowerCase() > b.title.toLowerCase()) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+};
+
+//RENDERING
 //=========
 
 const generateNoteDOM = (note) => {
@@ -50,9 +109,9 @@ const generateNoteDOM = (note) => {
         renderNotes(notes, filters);
     })
 
-    noteHeading.textContent = note.title;
+    noteHeading.textContent = note.title ? note.title : "Untitled Note";
     noteHeading.setAttribute('href', `/note.html#${note.id}`);
-    button.textContent = 'x'
+    button.textContent = 'x';
     
     noteHeadingDiv.appendChild(noteHeading);
     noteHeadingDiv.appendChild(button);
@@ -62,6 +121,7 @@ const generateNoteDOM = (note) => {
 };
 
 const renderNotes = (notes, filters) => {
+    notes = sortNotes(notes, filters.sortBy);
     const filteredNotes = notes.filter((note) => {
         return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
     });

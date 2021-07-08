@@ -8,12 +8,9 @@
     </head>
     <body>
         <h1>This is my basic Notes App</h1>
-        <div>
-            <a href="/note.html">Link</a>
-        </div>
         <h2>Take notes and never forget</h2>
         <input id="inp-search" name="inp-search" type="text" placeholder="Search Notes">
-        <select name="sort-options" id="sortOptions">
+        <select name="sort-by" id="sort-by">
             <option value="byEdited">Sort by last edited</option>
             <option value="byCreated">Sort by recently created</option>
             <option value="byAlphabet">Sort alphabetically</option>
@@ -21,7 +18,8 @@
         <button id="create-note">Create Note</button>
         <div id="notes"></div>
         <script src="./assets/js/uuidV4.js"></script>
+        <script src="./assets/js/moment.js"></script>
         <script src="./assets/js/notes-functions.js"></script>
-        <script src="./assets/js/main.js"d></script>
+        <script src="./assets/js/main.js"></script>
     </body>
 </html>

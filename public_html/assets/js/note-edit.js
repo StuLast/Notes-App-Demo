@@ -1,6 +1,7 @@
 const noteTitleElement = document.querySelector('#note-title');
 const noteBodyElement = document.querySelector('#note-body');
 const noteRemoveButton = document.querySelector('#remove-note');
+const noteLastEdited = document.querySelector('#last-edited');
 const noteId =  location.hash.substring(1);
 let notes = getSavedNotes();
 
@@ -16,14 +17,17 @@ noteTitleElement.focus();
 
 noteTitleElement.value = note.title;
 noteBodyElement.value = note.body;
+noteLastEdited.textContent = getLastUpdated(note.updatedAt);
 
 noteTitleElement.addEventListener('input', (e) => {
     note.title =  e.target.value;
+    note.updatedAt = moment().valueOf();
     setSavedNotes(notes);
 });
 
 noteBodyElement.addEventListener('input', (e) => {
     note.body = e.target.value
+    note.updatedAt = moment().valueOf();
     setSavedNotes(notes);
 });
 
@@ -47,6 +51,7 @@ window.addEventListener('storage', (e) => {
 
         noteTitleElement.value = note.title;
         noteBodyElement.value = note.body;
+        noteLastEdited.value = getLastUpdated();
     }
 });
 
