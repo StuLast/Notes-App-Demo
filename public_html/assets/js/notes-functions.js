@@ -27,10 +27,7 @@ const setSavedNotes = (notes) => {
 
 //Remove a note
 const removeNote =  (noteID) => {
-    const noteIndex = notes.findIndex((note) => {
-        return note.id === noteID;
-    });
-    console.log(noteIndex);
+    const noteIndex = notes.findIndex((note) => note.id === noteID);
     if(noteIndex > -1) {
         notes.splice(noteIndex, 1);
     }
@@ -120,9 +117,7 @@ const generateNoteDOM = (note) => {
 
 const renderNotes = (notes, filters) => {
     notes = sortNotes(notes, filters.sortBy);
-    const filteredNotes = notes.filter((note) => {
-        return note.title.toLowerCase().includes(filters.searchText.toLowerCase());
-    });
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()));
     document.querySelector('#notes').innerHTML = "";
     filteredNotes.forEach((note) => {
         document.querySelector('#notes').appendChild(generateNoteDOM(note));
