@@ -8,7 +8,7 @@ const filters = {
 //===============
 
 //Import existing notes from local storage
-const getSavedNotes = function () {
+const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes');
     if(notesJSON != null) {
         return JSON.parse(notesJSON);
@@ -18,17 +18,15 @@ const getSavedNotes = function () {
 };
 
 // returns last updated date formatted for display
-const getLastUpdated = function (timestamp) {
-    return `Last edited: ${moment(timestamp).fromNow()}`;
-};
+const getLastUpdated = (timestamp) => `Last edited: ${moment(timestamp).fromNow()}`;
 
 // save all notes
-const setSavedNotes = function (notes) {
+const setSavedNotes = (notes) => {
     localStorage.setItem('notes', JSON.stringify(notes));
 };
 
 //Remove a note
-const removeNote = function (noteID) {
+const removeNote =  (noteID) => {
     const noteIndex = notes.findIndex((note) => {
         return note.id === noteID;
     });
@@ -42,7 +40,7 @@ const removeNote = function (noteID) {
 //===============
 
 //  Sort notes by selected option 
-const sortNotes = function (notes, sortType) {
+const sortNotes = (notes, sortType) => {
     switch(sortType) {
         case "byEdited":
             return sortByEdited(notes);
@@ -55,7 +53,7 @@ const sortNotes = function (notes, sortType) {
     };
 };
 
-const sortByEdited =  (notes) => {
+const sortByEdited = (notes) => {
     return notes.sort((a, b) => {
         if(a.updatedAt > b.updatedAt) {
             return -1;
