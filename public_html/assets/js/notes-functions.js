@@ -10,7 +10,12 @@ const filters = {
 //Import existing notes from local storage
 const getSavedNotes = () => {
     const notesJSON = localStorage.getItem('notes');
-    return notesJSON != null ? JSON.parse(notesJSON) : [];
+    try {
+        return notesJSON != null ? JSON.parse(notesJSON) : [];
+    } catch (e) {
+        console.log('Local data storage corrupted and lost');
+        return [];
+    }
 };
 
 // returns last updated date formatted for display
