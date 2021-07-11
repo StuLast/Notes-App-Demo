@@ -20,25 +20,11 @@
 
         <!-- Controls block -->
         <div class="actions">
-            <div class="actions__container">
-                <input class="input" id="inp-search" name="inp-search" type="text" placeholder="Search Notes">
-                <select class="dropdown" name="sort-by" id="sort-by">
-                    <option value="byEdited">Sort by last edited</option>
-                    <option value="byCreated">Sort by recently created</option>
-                    <option value="byAlphabet">Sort alphabetically</option>
-                </select>
-                <button class="button" id="create-note">Create Note</button>
-                <a class="actions__link" href="/about.html">about</a>
-            </div>  
+            <div class="actions__container actions__container--spaced">
+                <a class="actions__link" href="/index.html">all notes</a>
+            </div>
         </div>
         <!-- END Controls block-->
-
-        <!-- Content block-->
-        <div class="container">
-            <div id="notes"></div>
-        </div>
-        <!--  END Content block-->
-        
 
         <!--  Scripts -->
         <script src="./assets/js/uuidV4.js"></script>

@@ -4,21 +4,43 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Note</title>
+    <link href="./assets/styles/styles.css" rel="stylesheet">
+    <title>Notes App</title>
 </head>
 <body>
-    <h1>Note</h1>
-    <a href="/index.html">All Notes</a>
-    <div>
-        <input type="text" id="note-title" name="note-title" placeholder="Note title">
+    <!--  Header block-->
+    <header class="header">
+        <div class="container">
+            <h1 class="header__title">Basic Notes App</h1>
+            <h2 class="header__subtitle">Store notes locally on your browser</h2>
+        </div>
+    </header>
+    <!-- END Header block-->
+
+    <!-- Controls block -->
+    <div class="actions">
+        <div class="actions__container actions__container--spaced">
+            <a class="actions__link" href="/index.html">all notes</a>
+            <span id="last-edited" ></span>
+        </div>
     </div>
-        <span id="last-edited"></span>
-    <div>
-        <textarea name="note-body" id="note-body" placeholder="Enter note texts"></textarea>
+    <!-- END Controls block-->
+
+    <!-- Content Block-->
+    <div class="container">
+        <div>
+            <input type="text" class="title-input" id="note-title" name="note-title" placeholder="Note title">
+        </div>
+        <div>
+            <textarea class="body-input" name="note-body"  id="note-body" placeholder="Enter note texts"></textarea>
+        </div>
+        <div>
+            <button class="button button--secondary" id="remove-note">Remove note</button>
+        </div>
     </div>
-    <div>
-        <button id="remove-note">Remove note</button>
-    </div>
+    <!-- End Content Block-->
+
+    <!-- Scripts -->
     <script src="./assets/js/moment.js"></script>
     <script src="./assets/js/notes-functions.js"></script>
     <script src="./assets/js/note-edit.js"></script>
