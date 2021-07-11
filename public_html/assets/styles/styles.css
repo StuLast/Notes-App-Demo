@@ -130,8 +130,8 @@ a {
 
 .actions__link {
     text-decoration: none;
-    display: block;
-    padding: 0.8rem;
+    display: inline-block;
+    margin-left: 10px;
 }
 
 /* Note editor */
@@ -190,4 +190,21 @@ a {
 .empty-message {
     text-align: center;
     margin: 3.2rem 0;
+}
+
+/* About page */
+
+.about__h1 {
+    font-size: 1.2em;
+    margin-bottom: 1.5rem;
+}
+
+.about__h2 {
+    font-size: 1.1em;
+    margin-bottom: 1.5rem;
+}
+
+.about__p {
+    font-size: 1em;
+    margin-bottom: 1.5rem;
 }
