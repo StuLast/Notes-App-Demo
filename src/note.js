@@ -1,18 +1,14 @@
 'use strict'
 import moment from 'moment';
-
-import { 
-    getSavedNotes,
-    getLastUpdated,
-    setSavedNotes,
-    removeNote } from './notes-functions'
+import { getNotes, removeNote, updateNote} from './notes'
+import { getLastUpdated } from './views'
 
 const noteTitleElement = document.querySelector('#note-title');
 const noteBodyElement = document.querySelector('#note-body');
 const noteRemoveButton = document.querySelector('#remove-note');
 const noteLastEdited = document.querySelector('#last-edited');
 const noteId =  location.hash.substring(1);
-let notes = getSavedNotes();
+let notes = getNotes();
 
 let note = notes.find((note) => note.id === noteId);
 
@@ -29,29 +25,28 @@ noteLastEdited.textContent = getLastUpdated(note.updatedAt);
 noteTitleElement.addEventListener('input', (e) => {
     note.title =  e.target.value;
     note.updatedAt = moment().valueOf();
-    setSavedNotes(notes);
+    updateNote(noteId, {title: note.title})
 });
 
 noteBodyElement.addEventListener('input', (e) => {
     note.body = e.target.value
     note.updatedAt = moment().valueOf();
-    setSavedNotes(notes);
+    updateNote(noteId, {body: note.body})
 });
 
 noteRemoveButton.addEventListener('click', (e) => {
-    removeNote(notes, noteId);
-    setSavedNotes(notes);
+    removeNote(noteId);
     location.assign('./index.html');
 });
 
 window.addEventListener('storage', (e) => {
     if(e.key === 'notes') {
         notes = JSON.parse(e.newValue);
-
         note = notes.find((note) => note.id === noteId);
         
         if(!note) {
             location.assign('/index.html');
+            return;
         }
 
         noteTitleElement.value = note.title;
