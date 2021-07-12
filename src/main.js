@@ -1,4 +1,12 @@
 'use strict'
+import uuidv4 from 'uuid/v4';
+import moment from 'moment';
+
+import {
+    filters, 
+    getSavedNotes,
+    setSavedNotes,
+    renderNotes} from './notes-functions';
 
 //Setup temp data objects
 //=======================

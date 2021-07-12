@@ -1,4 +1,11 @@
 'use strict'
+import moment from 'moment';
+
+import { 
+    getSavedNotes,
+    getLastUpdated,
+    setSavedNotes,
+    removeNote } from './notes-functions'
 
 const noteTitleElement = document.querySelector('#note-title');
 const noteBodyElement = document.querySelector('#note-body');
@@ -32,7 +39,7 @@ noteBodyElement.addEventListener('input', (e) => {
 });
 
 noteRemoveButton.addEventListener('click', (e) => {
-    removeNote(noteId);
+    removeNote(notes, noteId);
     setSavedNotes(notes);
     location.assign('./index.html');
 });
