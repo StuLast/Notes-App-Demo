@@ -1,4 +1,5 @@
 'use srict'
+import moment from 'moment';
 
 //State
 const filters = {
@@ -29,7 +30,7 @@ const setSavedNotes = (notes) => {
 };
 
 //Remove a note
-const removeNote =  (noteID) => {
+const removeNote =  (notes, noteID) => {
     const noteIndex = notes.findIndex((note) => note.id === noteID);
     if(noteIndex > -1) {
         notes.splice(noteIndex, 1);
@@ -115,7 +116,7 @@ const renderNotes = (notes, filters) => {
     const notesElement = document.querySelector('#notes');
     notes = sortNotes(notes, filters.sortBy);
     const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(filters.searchText.toLowerCase()));
-    notesElement.innerHTML = "";
+    notesElement.innerHTML="";
 
     if(filteredNotes.length > 0) {
         filteredNotes.forEach((note) => {
@@ -128,3 +129,16 @@ const renderNotes = (notes, filters) => {
         notesElement.appendChild(emptyMessage);
     }
 };
+
+export {
+    filters, 
+    getSavedNotes,
+    getLastUpdated,
+    setSavedNotes,
+    removeNote,
+    sortNotes,
+    renderNotes,
+    sortByCreated,
+    sortByAlphabet,
+    sortByEdited
+}
