@@ -31,12 +31,16 @@ Once downloaded, run the following to make sure all the packages are installed.
 
 ##  Running locally
 
-The repo contains a local server to emulate a web server, so can serve up the web application as if it were coming from a real web server.  This server also tracks changes and will reload automatically when changes are made.
+The repo has been configured to use webpack which contains a pseudo web-server, so can serve up the web application as if it were coming from a real web server.  This server also tracks changes and will reload automatically when changes are made.
 
 The script to run the server has already been defined in the package.json file.  To run the server enter the following into a terminal/bash/console app.
 
-```npm run dev```
+```npm run dev-server```
 
 This will start a local web server with the ip address http:/127.0.0.1:8080 and should automatically start up your default web browser.
 
 ---
+
+##  Produciton Builds
+
+To build for production, use `npm run build`.  This will package up all the files required for the application in the public_html folder.  The contents of the public_html folder are what should be copied over to any web hosting service.
