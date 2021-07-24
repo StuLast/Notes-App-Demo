@@ -11,6 +11,7 @@ const noteId =  location.hash.substring(1);
 let notes = getNotes();
 
 let note = notes.find((note) => note.id === noteId);
+console.log("|This note", note);
 
 if(!note) {
     location.assign('/index.html');
@@ -48,7 +49,6 @@ window.addEventListener('storage', (e) => {
             location.assign('/index.html');
             return;
         }
-
         noteTitleElement.value = note.title;
         noteBodyElement.value = note.body;
         noteLastEdited.value = getLastUpdated();

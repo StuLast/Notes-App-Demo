@@ -9,9 +9,8 @@ let notes = [];
 const loadNotes = () => {
     const notesJSON = localStorage.getItem('notes');
     try {
-        return notesJSON != null ? JSON.parse(notesJSON) : [];
+        return notesJSON ? JSON.parse(notesJSON) : [];
     } catch (e) {
-        console.log('Local data storage corrupted and lost');
         return [];
     }
 };
@@ -31,7 +30,7 @@ const createNote = () => {
     notes.push({
         createdAt: timeStamp,
         updatedAt: timeStamp,
-        id,
+        id: id,
         title: '',
         body: ''
     });
@@ -40,7 +39,8 @@ const createNote = () => {
 }
 
 const updateNote = (id, updates = {}) =>  {
-    const note = notes.find((note) => note.id = id);
+    const note = notes.find((note) => note.id === id);
+
     if(!note) {
         return;
     }
@@ -48,9 +48,7 @@ const updateNote = (id, updates = {}) =>  {
     if(typeof updates.title === 'string') {
         note.title = updates.title;
         note.updatedAt = moment().valueOf();
-    }
-
-    if(typeof updates.body === 'string') {
+    } else if(typeof updates.body === 'string') {
         note.body = updates.body;
         note.updatedAt = moment().valueOf();
     }
